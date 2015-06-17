@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title #{user.username}
+  body
+    div
+      form(action='/users/#{user.id}', method='post')
+        p
+          label(for='names') Nombre(s)
+          br
+          input(id='names', type='text', value='#{user.names}', name='names')
+        p
+          label(for='first_ln') Apellido paterno
+          br
+          input(id='first_ln', type='text', value='#{user.first_ln}', name='first_ln')
+        p
+          label(for='second_ln') Apellido materno
+          br
+          input(id='second_ln', type='text', value='#{user.second_ln}', name='second_ln')
+        p
+          label(for='username') Nombre de Usuario
+          br
+          input(id='username', type='text', value='#{user.username}', name='username')
+        p
+          label(for='email') E-mail
+          br
+          input(id='email', type='text', value='#{user.email}', name='email')
+        p
+          label(for='facebook_id') Facebook Id
+          br
+          input(id='facebook_id', type='text', value='#{user.facebook_id}', name='facebook_id')
+        p
+          label(for='password') Contraseña
+          br
+          input(id='password', type='password', value='', name='password')
+        input(type='submit', value='Enviar')

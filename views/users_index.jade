@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Usuarios
+  body
+    each user in users
+      div
+        h2 Id
+        p
+          span= user.id
+        h2 Nombre
+        p
+          span= (user.names + ' ' + user.first_ln + ' ' + user.second_ln)
+        h2 E-mail
+        p
+          span= user.email
+        h2 Facebook Id
+        p
+          span= user.facebook_id

@@ -4,9 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
+/*
+/Aqui va la conexión a la base de datos mierda puto Mitchel como te odio a la verga
+/
+*/
+var pool = mysql.createPool({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'n0m3l0',
+  database : 'Amoxtli',
+  connectionLimit : 10,
+});
+//TERMINA LA CONEXIÓN//
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users')(pool);
 
 var app = express();
 
