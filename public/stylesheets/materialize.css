@@ -1658,7 +1658,9 @@ html {
  * Remove default margin.
  */
 body {
-  margin: 0; }
+  margin: 0;
+  background-color: #e0e0e0;
+}
 
 /* HTML5 display definitions
    ========================================================================== */
@@ -1822,7 +1824,7 @@ code, kbd, pre, samp {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 button, input, optgroup, select, textarea {
-  color: inherit;
+  color: #FFFFFF;
   /* 1 */
   font: inherit;
   /* 2 */
@@ -2168,7 +2170,7 @@ ul.staggered-list li {
 footer.page-footer {
   margin-top: 20px;
   padding-top: 20px;
-  background-color: #ee6e73; }
+  background-color: #2196f3; }
   footer.page-footer .footer-copyright {
     overflow: hidden;
     height: 50px;
@@ -2264,7 +2266,7 @@ td, th {
 .collection {
   margin: 0.5rem 0 1rem 0;
   border: 1px solid #e0e0e0;
-  border-radius: 2px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative; }
   .collection .collection-item {
@@ -5006,7 +5008,7 @@ span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #2196f3;
   width: 100%;
   height: 56px;
   line-height: 56px; }
@@ -5602,7 +5604,7 @@ small {
 .btn, .btn-large {
   text-decoration: none;
   color: #FFF;
-  background-color: #26a69a;
+  background-color: #2196f3;
   text-align: center;
   letter-spacing: .5px;
   -webkit-transition: .2s ease-out;
@@ -5612,7 +5614,7 @@ small {
   transition: .2s ease-out;
   cursor: pointer; }
   .btn:hover, .btn-large:hover {
-    background-color: #2bbbad; }
+    background-color: #2196f3; }
 
 .btn-floating {
   display: inline-block;
@@ -5996,11 +5998,11 @@ select:focus {
 
 button:focus {
   outline: none;
-  background-color: #2ab7a9; }
+  background-color: #2196f3 ; }
 
 label {
   font-size: 0.8rem;
-  color: #9e9e9e; }
+  color: #FFFFFF; }
 
 /***************************
    Text Inputs + Textarea
@@ -6056,7 +6058,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   position: relative;
   margin-top: 1rem; }
   .input-field label {
-    color: #9e9e9e;
+    color: #FFFFFF;
     position: absolute;
     top: 0.8rem;
     left: 0.75rem;

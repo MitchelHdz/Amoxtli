@@ -58,7 +58,7 @@ module.exports = function(pool){
 			if (!err){
 				connection.query('SELECT * FROM users',function(err, rows, fields){
 					if(!err){
-						res.render('users_index',{users: rows});
+						res.render('users_new',{users: rows});
 						connection.release();
 					}else{
 						shoutError(err);
