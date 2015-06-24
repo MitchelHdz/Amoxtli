@@ -35,99 +35,20 @@ body
       br
       |             
       .container
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                      
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
-        |             
-        br
-        |             
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                      
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
-        |                  
-        br
-        |              
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                      
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
-        |                  
-        br
-        |             
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                      
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
-        |                  
-        br
-        |              
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                      
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
-        |                  
-        br
-        |             
-        .center
-          .col.s12.m6
-            .card.blue-grey.darken-1
-              .card-content.white-text
-                span.card-title Nombre de usuario
-                |                       
-                p
-                  | Libro solicitado para rpestamo el d&iacute;a 22-06-2015 con devolucion para el dia 04-07-2015
-              |                     
-              .card-action
-                a(href='#') Confirmar
-                |                       
-                a(href='#') Declinar
+        each val in lendings
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title #{val.id_user}
+                  |                      
+                  p
+                    | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.date} con devolucion para el dia 04-07-2015
+                |                     
+                .card-action
+                  a(href='#') Confirmar
+                  |                       
+                  a(href='#') Declinar
         |                 
         br
         |                
