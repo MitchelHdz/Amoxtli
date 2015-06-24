@@ -51,9 +51,12 @@ body
             |                        
             p.blue-text.text-lighten-5 Registra un pr&eacute;stamo.
             |                        
-            button.btn-large.waves-effect.waves-light(type='submit', name='action')
-              | Ingresar
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="movel()") Ingresar
               i.mdi-content-send.right
+            script.
+              function movel(){
+                window.location.href = '/lendings'
+              }
             |                     
             br
             br
@@ -71,9 +74,13 @@ body
             |                       
             p.blue-text.text-lighten-5 Edita o registra libros.
             |                       
-            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="movee()")
               | Ingresar
               i.mdi-content-send.right
+            script.
+              function movee(){
+                window.location.href = '/editions'
+              }
             |                           
             br
             br
@@ -91,9 +98,13 @@ body
             |                       
             p.blue-text.text-lighten-5 Consulta las multas.
             |                       
-            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="mover()")
               | Ingresar
               i.mdi-content-send.right
+            script.
+              function mover(){
+                window.location.href = '/reports'
+              }
             |                       
             br
             br

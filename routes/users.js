@@ -1,7 +1,7 @@
 module.exports = function(pool){
 	var express = require('express');
 	var router = express.Router();
-	var shoutError = function(err){
+	var shoutError = function(err, res){
 		res.writeHead(500, "Internal Server Error", {'Content-Type': 'text/html'});
 		res.end('Hubo un error por que la cago el Mitchel<br>Este es el pinche error: '+err);
 	};
@@ -23,9 +23,10 @@ module.exports = function(pool){
 				username: username,
 				email: email,
 				facebook_id: facebook_id,
-				password: password
+				password: password,
+				re_password: re_password
 		}
-
+		console.log(values);
 		return values;
 	}
 	var getPutValues = function(req){
@@ -81,6 +82,7 @@ module.exports = function(pool){
 		if(values.password == values.re_password){
 			pool.getConnection(function(err, connection){
 				if (!err) {
+					delete values['re_password'];
 					connection.query('INSERT INTO users SET ?', values, function(err, result){
 						if(!err){
 							res.writeHead(200, "OK", {'Content-Type': 'text/html'});
@@ -88,7 +90,7 @@ module.exports = function(pool){
 							connection.release();
 						}
 						else{
-							shoutError(err);
+							shoutError(err, res);
 						}
 					});					
 				}

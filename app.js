@@ -11,10 +11,11 @@ var mysql = require('mysql');
 */
 var pool = mysql.createPool({
   host     : 'localhost',
+  port     : '3306',
   user     : 'root',
   password : 'n0m3l0',
-  database : 'Amoxtli',
-  connectionLimit : 10,
+  database : 'amoxtli',
+  connectionLimit : 10
 });
 //TERMINA LA CONEXIÓN//
 
