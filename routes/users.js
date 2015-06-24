@@ -1,10 +1,12 @@
 module.exports = function(pool){
 	var express = require('express');
 	var router = express.Router();
+
 	var shoutError = function(err, res){
 		res.writeHead(500, "Internal Server Error", {'Content-Type': 'text/html'});
 		res.end('Hubo un error por que la cago el Mitchel<br>Este es el pinche error: '+err);
 	};
+
 	var getPostValues = function(req){
 		var names = req.body.names;
 			//Apellido paterno
@@ -29,6 +31,7 @@ module.exports = function(pool){
 		console.log(values);
 		return values;
 	}
+
 	var getPutValues = function(req){
 		var names = req.body.names;
 			//Apellido paterno
@@ -53,22 +56,33 @@ module.exports = function(pool){
 		return values;
 	}
 
-	//Index de todos los usuarios//
-	router.get('/', function(req, res, next) {
+	function getAllUsers(){
 		pool.getConnection(function(err, connection){
 			if (!err){
 				connection.query('SELECT * FROM users',function(err, rows, fields){
 					if(!err){
-						res.render('users_new',{users: rows});
+						users = rows;
 						connection.release();
+						return rows;
 					}else{
-						shoutError(err);
+						throw err;
+						return false;
 					}
 				});
 			}else{
-				shoutError(err);
+				throw err;
+				return false;
 			}
 		});
+	}
+	//Index de todos los usuarios//
+	router.get('/', function(req, res, next) {
+		users = getAllUsers();
+		if (users){
+			res.render('users_new',{users: rows});
+		}else{
+			res.render('error',{});
+		}
 	});
 
 	//Template para registrar usuario/
