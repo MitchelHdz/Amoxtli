@@ -57,34 +57,34 @@ body
           form.col.s12(action='/books', method='POST')
             .row
               .input-field.col.s6
-                input#first_name.validate(type='text')
+                input#first_name.validate(type='text' name='name')
                 |                       
                 label(for='first_name') Nombre
               |                     
               .input-field.col.s6
-                input#last_name.validate(type='text')
+                input#last_name.validate(type='text' name='author')
                 |                       
                 label(for='last_name') Autor
             |                   
             .row
               .input-field.col.s12
-                input#username.validate(type='text')
+                input#username.validate(type='text' name='editor')
                 |                       
                 label(for='username') Editorial
             |                   
             .row
               .input-field.col.s12
-                input#password.validate(type='text')
+                input#password.validate(type='text' name='genre')
                 |                       
                 label(for='password') Categoria
             |                   
             .row
               .input-field.col.s12
-                input#email.validate(type='text')
+                input#email.validate(type='text' name='number')
                 |                       
                 label(for='email') Numero de ejemplares
               |                        
-              .input-field.col.s12
+              .input-field.col.s12(name='review')
                 textarea#textarea1.materialize-textarea
                 |           
                 label(for='textarea1') Rese&ntilde;a
