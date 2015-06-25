@@ -40,19 +40,7 @@ body
       |                 
       br
       |                  
-      |                 
-      .container.blue-grey.darken-1
-        form(action='/books/search', method='GET')  
-          .col.s12
-            span.icon
-              i.fa.fa-search
-            |                       
-            input#search.validate(type='search', placeholder='Search...')
-            a.waves-effect.waves-light.btn(type='submit', name='') Buscar
-
-        |                 
-        br
-        |                 
+      |                               
         .row
           form.col.s12(action='/books', method='POST')
             .row
@@ -94,7 +82,11 @@ body
             |             
             .container.center
               button.btn-large.waves-effect.waves-light(type='submit', name='action')
-                | Registrar
+                | Editar
+                i.mdi-content-send.right
+              |                 
+              button.btn-large.waves-effect.waves-light(type='submit', name='action')
+                | Eliminar
                 i.mdi-content-send.right
     |         
     footer.page-footer

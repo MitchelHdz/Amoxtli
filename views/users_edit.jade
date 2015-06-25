@@ -1,28 +1,126 @@
-doctype html
-html
-  head
-    title username
-  body
-    div
-      form(action='/users/#{user.id}', method='post')
-        p
-          label(for='names') Nombre(s)
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Multas
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+      .navbar-fixed
+        //
+          <ul id="dropdown1" class="dropdown-content">
+          <form>
+          <li><input type="email" class="validate" id="email"><label for="email">Email</label></li>
+          <li><a href="#!">Iniciar Sesión</a></li>
+          <li class="divider"></li>
+          <li><a href="#!">Tu Gfa</a></li>
+          </form>
+          </ul>
+        nav
+          .nav-wrapper
+            a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
+            |                             
+            ul.right.hide-on-med-and-down
+              li
+                a(href='sass.html') Cerrar Sesi&oacute;n
+              // Dropdown Trigger
+    |         
+    main
+      br
+      |             
+      form(action='' method='POST')
+        .container
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Nombre de usuario
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='text' placeholder='#{user.names}')
+                    |                           
+                    label(for='first_name') Nombre
+          |             
           br
-          input(id='names', type='text', value='#{user.names}', name='names')
-        p
-          label(for='last_names') Apellidos
+          |             
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Apellidos
+                  |                       
+                  .input-field.col.s6
+                    input#first_name.validate(type='text' placeholder='#{user.last_names}')
+                    |                           
+                    label(for='first_name') Apellidos
+          |                  
           br
-          input(id='last_names', type='text', value='#{user.last_names}', name='last_names')
-        p
-          label(for='email') E-mail
+          |              
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Correo del usuario
+                  |                       
+                  .input-field.col.s6
+                    input#first_name.validate(type='email' placeholder='#{user.email}')
+                    |                           
+                    label(for='first_name') Correo
+          |                  
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Contrase&ntilde;a
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='password')
+                    |                           
+                    label(for='first_name') Contrase&ntilde;a
+          |                  
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Repetir contrase&ntilde;a
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='password')
+                    |                           
+                    label(for='first_name') Contrase&ntilde;a
+          |                  
           br
-          input(id='email', type='text', value='#{user.email}', name='email')
-        p
-          label(for='facebook_id') Facebook Id
+          |              
+          .center
+            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+              | Editar
+              i.mdi-content-add-box.right
+          |                 
           br
-          input(id='facebook_id', type='text', value='#{user.facebook_id}', name='facebook_id')
-        p
-          label(for='password') Contraseña
+          |                 
           br
-          input(id='password', type='password', value='', name='password')
-        input(type='submit', value='Enviar')
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos Reservados
+          a.grey-text.text-lighten-4.right(href='/') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')

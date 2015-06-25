@@ -24,7 +24,7 @@ body
           </ul>
         nav
           .nav-wrapper
-            a.brand-logo(href='#!') Amoxtli
+            a.brand-logo(href='#!') &nbsp;&nbsp;Amoxtli
             |                           
             ul.right.hide-on-med-and-down
               li
@@ -69,7 +69,8 @@ body
               form(style="display:inline;" action="/users/#{user.id}/edit" method='GET')
                 button.btn-large.waves-effect.waves-light(type='submit', name='')
                   | Editar
-                  i.mdi-content-send.right               
+                  i.mdi-content-send.right  
+              &nbsp;&nbsp;&nbsp;&nbsp;            
               form(style="display:inline;" action="/users/#{user.id}/delete" method='POST')
                 button.btn-large.waves-effect.waves-light(type='submit', name='')
                   | Eliminar
