@@ -6,11 +6,11 @@ head
     |         
     title Multas
     // CSS
-    link(href='css/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
     |         
-    link(href='css/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
   |     
-  body
+body
     header
       .navbar-fixed
         //
@@ -90,27 +90,27 @@ head
                     div
                       span.card-title
                         input(type='hidden', name='name')
-                        | #{book.name}
+                        | Nombre: #{book.name}
                     |                       
                     div
                       span.card-title
                         input(type='hidden', name='name')
-                        | #{book.author}
+                        | Autor: #{book.author}
                     |                       
                     div
                       span.card-title
                         input(type='hidden', name='name')
-                        | #{book.editor}
+                        | Editor: #{book.editor}
                     |                       
                     div
                       span.card-title
                         input(type='hidden', name='name')
-                        | #{book.genre}
+                        | Genero: #{book.genre}
                     |                       
                     div
                       span.card-title
                         input(type='hidden', name='name')
-                        | #{book.number}
+                        | Ejemplares #{book.number}
                     |                       
                     p #{book.review}
                   |                              
@@ -135,6 +135,6 @@ head
     // SCRIPTS
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     |         
-    script(src='js/materialize.js')
+    script(src='/javascripts/materialize.js')
     |         
-    script(src='js/init.js')
+    script(src='/javascripts/init.js')

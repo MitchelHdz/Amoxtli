@@ -26,4 +26,7 @@ create table lendings(
     lending_date date,
     delivery_date date
 );
+drop table lendings;
 SELECT * from books;
+select * from users;
+select * from admins;

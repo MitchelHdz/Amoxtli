@@ -51,7 +51,7 @@ module.exports = function(pool){
 							if(user.password == login_params.password){
 								var sess = req.session;
 								sess.user = user.username;
-								res.redirect('/index')
+								res.redirect('/books/searching')
 							}else{
 								res.writeHead(500, "Bad-Bassword", {'Content-Type': 'text/html'});
 								res.end('Contraseña incorrecta');
@@ -72,7 +72,7 @@ module.exports = function(pool){
 	router.post('/loginAdmin', function(req, res, next){
 		var login_params = getLoginParams(req);
 		if ((login_params.username) && (login_params.password)){
-			loginUsers(req, res, login_params);
+			loginAdmin(req, res, login_params);
 		}else{
 			res.writeHead(500, "No-Field Type", {'Content-Type': 'text/html'});
 			res.end('Aprende a llenar formularios mongoloide.');
