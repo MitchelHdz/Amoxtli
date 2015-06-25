@@ -23,6 +23,27 @@ module.exports = function(pool){
 
 		return values;
 	}
+	function getPutValues(req){
+		var body = req.body;
+
+		var name = body.name;
+		var author = body.author;
+		var editor = body.editor;
+		var genre = body.genre;
+		var number = body.number;
+		var review = body.review;
+
+		var values = {
+			name: name,
+			author: author,
+			editor: editor,
+			genre: genre,
+			number: number,
+			review: review
+		}
+
+		return values;
+	}
 	function postBook(res, values){
 		pool.getConnection(function(err, connection){
 			if(!err){
@@ -38,10 +59,20 @@ module.exports = function(pool){
 			}
 		});
 	}
+	function putBook(res, values){
+		pool.getConnection(function(err, connection){
+			if(!err){
+				connection.query('UPDATE books SET ? WHERE ?', [values, name], function(err, result){
+				});
+			}
+			else{
 
+			}
+		});
+	}
 	router.get('/new',function(req, res, next){
 		var sess = req.session;
-		if(sess.admin){
+		if(!sess.admin){
 			res.render('books_new');
 		}else{
 			res.redirect('/');

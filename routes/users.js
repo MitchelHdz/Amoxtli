@@ -44,7 +44,7 @@ module.exports = function(pool){
 					if(!err){
 						users = rows;
 						connection.release();
-						res.render('users_new',{users: rows});
+						res.render('users_all',{users: rows});
 					}else{
 						throw err;
 						return false;
