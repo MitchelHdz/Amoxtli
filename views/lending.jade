@@ -37,7 +37,7 @@ body
                     span.card-title Prestamo para el usuario #{val.id_user}
                     |                      
                     p
-                      | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.date} con devolucion para el dia 04-07-2015
+                      | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.lending_date} con devolucion para el #{val.delivery_date}
                   |                     
                   .card-action
                       form(style="display:inline;", action='/reports', method='POST')
@@ -59,7 +59,7 @@ body
         |                
         .center
           button.btn-large.waves-effect.waves-light(type='submit', name='action')
-            | No hay reportes por hacer
+            | No hay prestamos por hacer
             i.mdi-content-add-box.right
     |                 
     br

@@ -29,7 +29,7 @@ body
       |          
       if lendings   
         .container
-          each val in lendings
+          each val in reports
             .center
               .col.s12.m6
                 .card.blue-grey.darken-1
@@ -37,17 +37,16 @@ body
                     span.card-title Reporte al usuario #{val.id_user}
                     |                      
                     p
-                      | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.date} sin devolucion para el dia 04-07-2015
+                      | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.lending_date} sin devolucion para el dia #{val.delivery_date}
                   |                     
                   .card-action
-                    .col.s6
-                      form(action='', method='POST')
+                      form(style="display:inline;", action='/reports', method='POST')
                         .container.center
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Confirmar
                               i.mdi-content-send.right
-                    .col.s6
-                      form(action='', method='POST')
+                      &nbsp;&nbsp;&nbsp;&nbsp;                  
+                      form(style="display:inline;", action='/reports', method='POST')
                         .container.center
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Declinar
