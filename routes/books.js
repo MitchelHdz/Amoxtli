@@ -49,7 +49,8 @@ module.exports = function(pool){
 			if (!err){
 				connection.query('SELECT * FROM books WHERE id = "'+req.param("id")+'"',function(err, rows, fields){
 					if(!err){
-						res.render('books_show',{book: rows[0]});
+						var sess = req.session;
+						res.render('books_show',{book: rows[0], session: sess.user});
 						connection.release();
 					}else{
 						res.render('error',{error: err});
