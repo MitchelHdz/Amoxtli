@@ -36,10 +36,18 @@ module.exports = function(pool){
 			}else{
 				res.render('error',{error: err})
 			}
-		}
+		});
 	}
 
-	router.post('/',function(req, res, next){
+	router.get('/new',function(req, res, next){
+		var sess = req.session;
+		if(sess.admin){
+			res.render('books_new');
+		}else{
+			res.redirect('/');
+		}
+	});
+	router.post('/', function(req, res, next){
 		values = getPostValues(req);
 		postBook(res, values);
 	});
