@@ -170,7 +170,6 @@ module.exports = function(pool){
 		postUser(values, res);
 
 	});
-
 	router.get('/:id',function(req, res, next){
 		getUser(req,res);
 	});

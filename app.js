@@ -23,6 +23,7 @@ var pool = mysql.createPool({
 var routes = require('./routes/index');
 var users = require('./routes/users')(pool);
 var sessions = require('./routes/sessions')(pool);
+var books = require('./routes/books')(pool);
 
 var app = express();
 //SET SESSION
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/sessions', sessions);
+app.use('/books', books);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

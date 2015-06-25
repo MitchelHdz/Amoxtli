@@ -28,7 +28,7 @@ module.exports = function(pool){
 			if(!err){
 				connection.query('INSERT INTO books SET ?', values, function(err, result){
 					if(!err){
-						res.redirect('/editions');
+						res.redirect('/editions', {flash: 'Registro exitoso'});
 					}else{
 						res.render('error',{error: err})
 					}
@@ -39,6 +39,9 @@ module.exports = function(pool){
 		}
 	}
 
-	router.post('/name')
+	router.post('/',function(req, res, next){
+		values = getPostValues(req);
+		postBook(res, values);
+	});
 	return router;
 }
