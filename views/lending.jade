@@ -17,7 +17,7 @@ body
         
         nav
           .nav-wrapper
-            a.brand-logo(href='/localhost:3000') Amoxtli
+            a.brand-logo(href='/') Amoxtli
             |                             
             ul.right.hide-on-med-and-down
               li
@@ -41,13 +41,13 @@ body
                   |                     
                   .card-action
                     .col.s6
-                      form(action='/reports', method='GET')
+                      form(action='/reports', method='POST')
                         .container.center
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Confirmar
                               i.mdi-content-send.right
                     .col.s6
-                      form(action='/reports', method='GET')
+                      form(action='/reports', method='POST')
                         .container.center
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Declinar
