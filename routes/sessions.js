@@ -23,7 +23,7 @@ module.exports = function(pool){
 							if(admin.password == login_params.password){
 								var sess = req.session;
 								sess.admin = admin.username;
-								res.redirect('/reports')
+								res.redirect('/index')
 							}else{
 								res.writeHead(500, "Bad-Bassword", {'Content-Type': 'text/html'});
 								res.end('Contraseña incorrecta');
