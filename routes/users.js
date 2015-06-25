@@ -10,9 +10,7 @@ module.exports = function(pool){
 	var getPostValues = function(req){
 		var names = req.body.names;
 			//Apellido paterno
-		var first_ln = req.body.first_ln;
-			//Apellido materno
-		var second_ln = req.body.second_ln;
+		var last_names = req.body.last_names;
 		var username = req.body.username;
 		var email = req.body.email;
 		var facebook_id = req.body.facebook_id;
@@ -20,24 +18,20 @@ module.exports = function(pool){
 		var re_password = req.body.re_password;
 		values={
 				names: names,
-				first_ln: first_ln,
-				second_ln: second_ln,
+				last_names: last_names,
 				username: username,
 				email: email,
 				facebook_id: facebook_id,
 				password: password,
 				re_password: re_password
 		}
-		console.log(values);
 		return values;
 	}
 
 	var getPutValues = function(req){
 		var names = req.body.names;
 			//Apellido paterno
-		var first_ln = req.body.first_ln;
-			//Apellido materno
-		var second_ln = req.body.second_ln;
+		var last_names = req.body.last_names;
 		var username = req.body.username;
 		var email = req.body.email;
 		var facebook_id = req.body.facebook_id;
@@ -45,7 +39,7 @@ module.exports = function(pool){
 		var re_password = req.body.re_password;
 		values={
 			names: names,
-			first_ln: first_ln,
+			last_names: last_names,
 			second_ln: second_ln,
 			username: username,
 			email: email,
@@ -75,13 +69,41 @@ module.exports = function(pool){
 			}
 		});
 	}
+
+	function postUser(values, res) {
+		if(values.password == values.re_password){
+			pool.getConnection(function(err, connection){
+				if (!err) {
+					delete values['re_password'];
+					connection.query('INSERT INTO users SET ?', values, function(err, result){
+						if(!err){
+							connection.release();
+							res.writeHead(200, "OK", {'Content-Type': 'text/html'});
+							res.end('Pinche si inserte todos los datos en el culo de tu jefa');
+							return true;
+						}
+						else{
+							throw err;
+							res.render('error',{error: err});
+							return false;
+						}
+					});					
+				}
+				else{
+					throw err;
+					res.render('error',{error: err});
+					return false;
+				}
+			});
+		}
+	}
 	//Index de todos los usuarios//
 	router.get('/', function(req, res, next) {
 		users = getAllUsers();
 		if (users){
 			res.render('users_new',{users: rows});
 		}else{
-			res.render('error',{});
+			
 		}
 	});
 
@@ -91,28 +113,10 @@ module.exports = function(pool){
 	});
 	//Registro de ususaro//
 	router.post('/', function(req, res, next){
-			//Obteniendo los datos del usuario
+		//Obteniendo los datos del formulario
 		values = getPostValues(req);
-		if(values.password == values.re_password){
-			pool.getConnection(function(err, connection){
-				if (!err) {
-					delete values['re_password'];
-					connection.query('INSERT INTO users SET ?', values, function(err, result){
-						if(!err){
-							res.writeHead(200, "OK", {'Content-Type': 'text/html'});
-							res.end('Pinche si inserte todos los datos en el culo de tu jefa');
-							connection.release();
-						}
-						else{
-							shoutError(err, res);
-						}
-					});					
-				}
-				else{
-					shoutError(err);
-				}
-			});
-		}
+		postUser(values, res);
+
 	});
 
 	//Template para vel el perfil del usuario//
@@ -197,7 +201,7 @@ module.exports = function(pool){
 			}
 		});		
 	}
-	router.delete('/:id/delete', function(req, res, next){
+	router.delete('/:id?/delete', function(req, res, next){
 		deleteUser(req, res, next)
 	});
 	router.post('/:id?/delete', function(req, res, next){
