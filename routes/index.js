@@ -28,4 +28,7 @@ router.get('/editions', function(req, res, next) {
 router.get('/confirm_report', function(req, res, next) {
   res.render('confirm_reports', { title: 'Confirmacion' });
 });
+router.get('/confirm_lending', function(req, res, next) {
+  res.render('confirm_lendings', { title: 'Confirmacion' });
+});
 module.exports = router;
