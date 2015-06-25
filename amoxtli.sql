@@ -18,4 +18,4 @@ genre VARCHAR(30),
 number VARCHAR(30),
 review TEXT
 );
-SELECT * from users;
+SELECT * from books;

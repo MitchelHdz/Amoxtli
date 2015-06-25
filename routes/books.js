@@ -41,7 +41,7 @@ module.exports = function(pool){
 			number: number,
 			review: review
 		}
-
+		console.log(values);
 		return values;
 	}
 	function postBook(res, values){
@@ -49,13 +49,13 @@ module.exports = function(pool){
 			if(!err){
 				connection.query('INSERT INTO books SET ?', values, function(err, result){
 					if(!err){
-						res.redirect('/editions', {flash: 'Registro exitoso'});
+						res.redirect('/books/new');
 					}else{
 						res.render('error',{error: err})
 					}
 				});
 			}else{
-				res.render('error',{error: err})
+				res.render('error',{error: err});
 			}
 		});
 	}
@@ -63,14 +63,45 @@ module.exports = function(pool){
 		pool.getConnection(function(err, connection){
 			if(!err){
 				connection.query('UPDATE books SET ? WHERE ?', [values, name], function(err, result){
+					if(!err){
+
+					}else{
+						res.render('error',{error: err})
+					}
 				});
 			}
 			else{
-
+				res.render('error',{error: err})
 			}
 		});
 	}
-	router.get('/new',function(req, res, next){
+	function searchBooks (res, q) {
+			var query = [
+				{author: q},
+				{name: q},
+				{editor: q}
+			]
+			pool.getConnection(function(err, connection){
+			if(!err){
+				connection.query('SELECT * FROM books WHERE ? OR ? OR ?', query, function(err, rows, fields){
+					if(!err){
+						console.log(rows);
+					}else{
+						res.render('error',{error: err})
+					}
+				});
+			}
+			else{
+				res.render('error',{error: err});
+			}
+		});	
+	}
+	router.get('/search', function(req, res, next){
+		var q = req.query.q;
+		console.log(q);
+		searchBooks(res, q);
+	});
+	router.get('/new', function(req, res, next){
 		var sess = req.session;
 		if(!sess.admin){
 			res.render('books_new');
