@@ -13,9 +13,32 @@ module.exports = function(pool){
 		var review = body.review;
 
 		var values = {
+			name: name,
+			author: author,
+			editor: editor,
+			genre: genre,
+			number: number,
+			review: review
+		}
 
+		return values;
+	}
+	function postBook(res, values){
+		pool.getConnection(function(err, connection){
+			if(!err){
+				connection.query('INSERT INTO books SET ?', values, function(err, result){
+					if(!err){
+						res.redirect('/editions');
+					}else{
+						res.render('error',{error: err})
+					}
+				});
+			}else{
+				res.render('error',{error: err})
+			}
 		}
 	}
 
+	router.post('/name')
 	return router;
 }
