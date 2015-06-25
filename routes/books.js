@@ -44,6 +44,22 @@ module.exports = function(pool){
 		console.log(values);
 		return values;
 	}
+	function getBook(req, res){
+		pool.getConnection(function(err, connection){
+			if (!err){
+				connection.query('SELECT * FROM books WHERE id = "'+req.param("id")+'"',function(err, rows, fields){
+					if(!err){
+						res.render('books_show',{book: rows[0]});
+						connection.release();
+					}else{
+						res.render('error',{error: err});
+					}
+				});
+			}else{
+				res.render('error',{error: err});
+			}
+		});	
+	}
 	function postBook(res, values){
 		pool.getConnection(function(err, connection){
 			if(!err){
@@ -59,10 +75,10 @@ module.exports = function(pool){
 			}
 		});
 	}
-	function putBook(res, values){
+	function putBook(res, values, id){
 		pool.getConnection(function(err, connection){
 			if(!err){
-				connection.query('UPDATE books SET ? WHERE ?', [values, name], function(err, result){
+				connection.query('UPDATE books SET ? WHERE ?', [values, id], function(err, result){
 					if(!err){
 
 					}else{
@@ -85,7 +101,12 @@ module.exports = function(pool){
 			if(!err){
 				connection.query('SELECT * FROM books WHERE ? OR ? OR ?', query, function(err, rows, fields){
 					if(!err){
-						console.log(rows);
+						if(rows.length >0){
+							res.render('books_query', {books: rows});
+						}
+						else{
+							res.render('books_query', {books: null});
+						}
 					}else{
 						res.render('error',{error: err})
 					}
@@ -96,9 +117,11 @@ module.exports = function(pool){
 			}
 		});	
 	}
+	router.get('/searching', function(req, res, next){
+		res.render('search_book');
+	});
 	router.get('/search', function(req, res, next){
-		var q = req.query.q;
-		console.log(q);
+		var q = req.query.q;;
 		searchBooks(res, q);
 	});
 	router.get('/new', function(req, res, next){
@@ -112,6 +135,15 @@ module.exports = function(pool){
 	router.post('/', function(req, res, next){
 		values = getPostValues(req);
 		postBook(res, values);
+	});
+	router.get('/:id',function(req, res, next){
+		getBook(req,res);
+	});
+	router.get('/date',function(req, res, next){
+		var date = new Date();
+		date.setDate(date.getDate() + 6);
+		console.log(date);
+		res.end(toString(date.getDate()));
 	});
 	return router;
 }

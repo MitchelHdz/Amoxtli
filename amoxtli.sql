@@ -11,11 +11,19 @@ CREATE table users(
 );
 CREATE table books(
 id INT auto_increment PRIMARY KEY NOT NULL,
-name VARCHAR(30),
-author VARCHAR(30),
-editor VARCHAR(30),
-genre VARCHAR(30),
-number VARCHAR(30),
+name VARCHAR(30) NOT NULL,
+author VARCHAR(30) NOT NULL,
+editor VARCHAR(30) NOT NULL,
+genre VARCHAR(30) NOT NULL,
+number VARCHAR(30) NOT NULL,
 review TEXT
+);
+drop table books;
+create table lendings(
+	id INT auto_increment PRIMARY KEY NOT NULL,
+    id_user INT references users.id,
+    id_book INT references book.id,
+    lending_date date,
+    delivery_date date
 );
 SELECT * from books;
