@@ -40,9 +40,18 @@ body
                       | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.date} sin devolucion para el dia 04-07-2015
                   |                     
                   .card-action
-                    a(href='#') Confirmar
-                    |                       
-                    a(href='#') Declinar
+                    .col.s6
+                      form(action='/reports', method='GET')
+                        .container.center
+                            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+                              | Confirmar
+                              i.mdi-content-send.right
+                    .col.s6
+                      form(action='/reports', method='GET')
+                        .container.center
+                            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+                              | Declinar
+                              i.mdi-content-send.right
       else
         h1 Pito
       //ENDS ELSE
