@@ -25,5 +25,7 @@ router.get('/lendings', function(req, res, next) {
 router.get('/editions', function(req, res, next) {
   res.render('edit', { title: 'Ediciones' });
 });
-
+router.get('/confirm_report', function(req, res, next) {
+  res.render('confirm_reports', { title: 'Confirmacion' });
+});
 module.exports = router;
