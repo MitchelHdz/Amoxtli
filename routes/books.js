@@ -127,7 +127,7 @@ module.exports = function(pool){
 	});
 	router.get('/new', function(req, res, next){
 		var sess = req.session;
-		if(!sess.admin){
+		if(sess.admin){
 			res.render('books_new');
 		}else{
 			res.redirect('/');

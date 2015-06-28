@@ -1,5 +1,62 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype //if lt IE 7 
+  head
+    meta(charset='UTF-8')
+    |         
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    |  
+    |         
+    title Inicio
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    |  
+    |         
+    meta(name='description', content='Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow')
+    |         
+    meta(name='keywords', content='css3, css-only, fullscreen, background, slideshow, images, content')
+    |         
+    meta(name='author', content='Codrops')
+    |         
+    link(rel='shortcut icon', href='../favicon.ico')
+    |  
+    |         
+    link(rel='stylesheet', type='text/css', href='css/demo1.css')
+    |         
+    link(rel='stylesheet', type='text/css', href='css/style1.1.css')
+    | &#x9;&#x9;
+    script(type='text/javascript', src='js/modernizr.custom.86080.js')
+  | &#x9;
+  //a(href='LoginU.html')
+  body#page
+    ul.cb-slideshow
+      li
+        span Image 01
+        div
+          h3 Amoxtli
+      |             
+      li
+        span Image 02
+        div
+          h3 Variedad de libros
+      |             
+      li
+        span Image 03
+        div
+          h3 Inicia sesi&oacute;n y obt&eacute;n pr&eacute;stamos
+      |             
+      li
+        span Image 04
+        div
+          h3 S&eacute; parte de Amoxtli
+      |  
+      | &#x9;&#x9;&#x9;
+      li
+        span Image 05
+        div
+          h3
+      |             
+      li
+        span Image 06
+        div
+          h3
+    |         
+    .container

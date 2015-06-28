@@ -50,7 +50,8 @@ module.exports = function(pool){
 						if(user){
 							if(user.password == login_params.password){
 								var sess = req.session;
-								sess.user = user.username;
+								sess.user = user.id;
+								console.log(sess.user);
 								res.redirect('/books/searching')
 							}else{
 								res.writeHead(500, "Bad-Bassword", {'Content-Type': 'text/html'});

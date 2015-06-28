@@ -20,10 +20,12 @@ var pool = mysql.createPool({
 });
 //TERMINA LA CONEXIÓN//
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users')(pool);
 var sessions = require('./routes/sessions')(pool);
 var books = require('./routes/books')(pool);
+var lendings = require('./routes/lendings')(pool);
+var reports = require('./routes/reports')(pool);
 
 var app = express();
 //SET SESSION
@@ -45,10 +47,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/sessions', sessions);
 app.use('/books', books);
+app.use('/lendings', lendings);
+app.use('/reports', reports);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

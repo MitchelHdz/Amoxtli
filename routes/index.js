@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Amoxtli' });
+  res.render('index', { title: 'Amoxtli' });
+});
+router.get('/login', function(req, res, next){
+	res.render('login', { title: 'Amoxtli'});
 });
 router.get('/loginAdmin', function(req, res, next){
 	res.render('login_admin');
