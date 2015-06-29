@@ -6,9 +6,9 @@ head
     |         
     title Pr&eacute;stamos
     // CSS
-    link(href='stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
     |         
-    link(href='stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
   |     
 body
     header
@@ -37,10 +37,10 @@ body
                     span.card-title Prestamo del libro #{val.id_book}
                     |                      
                     p
-                      | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.lending_date} con devolucion para el #{val.delivery_date}
+                      | Libro #{val.book_name} solicitado para prestamo el d&iacute;a #{val.lending_date} con devolucion para el #{val.delivery_date}
                   |                     
       else
-       
+        h1 No tienes préstamos pendientes mijito =^u^=
       //ENDS ELSE
         |                 
         br
@@ -67,6 +67,6 @@ body
     // SCRIPTS
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     |         
-    script(src='javascripts/materialize.js')
+    script(src='/javascripts/materialize.js')
     |         
-    script(src='javascripts/init.js')
+    script(src='/javascripts/init.js')

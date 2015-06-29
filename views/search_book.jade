@@ -23,13 +23,22 @@ body
           </form>
           </ul>
         nav
-          .nav-wrapper
-            a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
-            |                             
-            ul.right.hide-on-med-and-down
-              li
-                a(href='/') Cerrar Sesi&oacute;n
-              // Dropdown Trigger
+          if session
+            .nav-wrapper
+              a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/sessions/logout') Cerrar Sesi&oacute;n
+                // Dropdown Trigger
+          else
+            .nav-wrapper
+              a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/login') Iniciar Sesi&oacute;n
+                // Dropdown Trigger    
     |         
     main
       br

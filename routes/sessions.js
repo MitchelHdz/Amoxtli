@@ -23,14 +23,17 @@ module.exports = function(pool){
 							if(admin.password == login_params.password){
 								var sess = req.session;
 								sess.admin = admin.username;
-								res.redirect('/index')
+								res.redirect('/index');
+								connection.release();
 							}else{
 								res.writeHead(500, "Bad-Bassword", {'Content-Type': 'text/html'});
 								res.end('Contraseña incorrecta');
+								connection.release();
 							}
 						}else{
 							res.writeHead(500, "No-User", {'Content-Type': 'text/html'});
 							res.end('No existe este usuario');
+							connection.release();
 						}
 					}else{
 						throw err;
@@ -52,14 +55,17 @@ module.exports = function(pool){
 								var sess = req.session;
 								sess.user = user.id;
 								console.log(sess.user);
-								res.redirect('/books/searching')
+								res.redirect('/books/searching');
+								connection.release();
 							}else{
 								res.writeHead(500, "Bad-Bassword", {'Content-Type': 'text/html'});
 								res.end('Contraseña incorrecta');
+								connection.release();
 							}
 						}else{
 							res.writeHead(500, "No-User", {'Content-Type': 'text/html'});
 							res.end('No existe este usuario');
+							connection.release();
 						}
 					}else{
 						throw err;

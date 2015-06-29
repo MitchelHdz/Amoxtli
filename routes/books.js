@@ -67,12 +67,15 @@ module.exports = function(pool){
 				connection.query('INSERT INTO books SET ?', values, function(err, result){
 					if(!err){
 						res.redirect('/books/new');
+						connection.release();
 					}else{
-						res.render('error',{error: err})
+						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});
 	}
@@ -81,14 +84,16 @@ module.exports = function(pool){
 			if(!err){
 				connection.query('UPDATE books SET ? WHERE ?', [values, id], function(err, result){
 					if(!err){
-
+						connection.release();
 					}else{
-						res.render('error',{error: err})
+						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}
 			else{
-				res.render('error',{error: err})
+				res.render('error',{error: err});
+				connection.release();
 			}
 		});
 	}
@@ -104,22 +109,26 @@ module.exports = function(pool){
 					if(!err){
 						if(rows.length >0){
 							res.render('books_query', {books: rows});
+							connection.release();
 						}
 						else{
 							res.render('books_query', {books: null});
+							connection.release();
 						}
 					}else{
 						res.render('error',{error: err})
+						connection.release();
 					}
 				});
 			}
 			else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});	
 	}
 	router.get('/searching', function(req, res, next){
-		res.render('search_book');
+		res.render('search_book', { session: req.session.user || req.session.admin });
 	});
 	router.get('/search', function(req, res, next){
 		var q = req.query.q;;

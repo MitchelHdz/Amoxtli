@@ -40,14 +40,17 @@ body
                       | Libro #{val.id_book} solicitado para prestamo el d&iacute;a #{val.lending_date} con devolucion para el #{val.delivery_date}
                   |                     
                   .card-action
-                      form(style="display:inline;", action='/reports', method='POST')
+                      form(style="display:inline;", action='/lendings/confirm', method='POST')
                         .container.center
+                            input(type='hidden', name='lending_id', value="#{val.lending_id}")
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Confirmar
                               i.mdi-content-send.right
                       &nbsp;&nbsp;&nbsp;&nbsp;                  
-                      form(style="display:inline;", action='/reports', method='POST')
+                      form(style="display:inline;", action='/lendings/decline', method='POST')
                         .container.center
+
+                            input(type='hidden', name='lending_id', value="#{val.lending_id}")
                             button.btn-large.waves-effect.waves-light(type='submit', name='action')
                               | Declinar
                               i.mdi-content-send.right

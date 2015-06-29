@@ -58,7 +58,7 @@ module.exports = function(pool){
 	}
 	function getUserEdit(req, res){
 		pool.getConnection(function(err, connection){
-			if (!err){
+			if(!err){
 				connection.query('SELECT * FROM users WHERE id = "'+req.param("id")+'"',function(err, rows, fields){
 					if(!err){
 						connection.release();
@@ -66,10 +66,12 @@ module.exports = function(pool){
 						
 					}else{
 						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});	
 	}
@@ -82,10 +84,12 @@ module.exports = function(pool){
 						connection.release();
 					}else{
 						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});		
 	}
@@ -96,21 +100,18 @@ module.exports = function(pool){
 					delete values['re_password'];
 					connection.query('INSERT INTO users SET ?', values, function(err, result){
 						if(!err){
-							connection.release();
 							res.redirect('/users/'+result.insertId);
-							return true;
+							connection.release();
 						}
 						else{
-							throw err;
 							res.render('error',{error: err});
-							return false;
+							connection.release();
 						}
 					});					
 				}
 				else{
-					throw err;
 					res.render('error',{error: err});
-					return false;
+					connection.release();
 				}
 			});
 		}
@@ -130,10 +131,12 @@ module.exports = function(pool){
 						connection.release();
 					}else{
 						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});
 	}
@@ -142,23 +145,75 @@ module.exports = function(pool){
 			if (!err){
 				connection.query('DELETE FROM users WHERE id = "'+req.param("id")+'"',function(err, result){
 					if(!err){
-						connection.release();
 						res.redirect('/users');
+						connection.release();
 					}else{
 						res.render('users_new',{users: rows});
+						connection.release();
 					}
 				});
 			}else{
-				res.render('users_new',{users: rows});
+				res.render('error',{error: err});
+				connection.release();
 			}
 		});		
 	}
-
+	function indexUser(id_user, res){
+		pool.getConnection(function(err, connection){
+			if (!err){
+				connection.query('SELECT * FROM users WHERE id = "'+id_user+'"',function(err, rows, fields){
+					if(!err){
+						res.render('users_main',{user: rows[0]});
+						connection.release();
+					}else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});
+			}else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});			
+	}	
+	function getUserLendings(id_user, res){
+		pool.getConnection(function(err, connection){
+			if (!err){
+				connection.query('call getUserLendings('+id_user+')',function(err, rows, fields){
+					if(!err){
+						res.render('users_lendings',{lendings: rows[0]});
+						connection.release();
+					}else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});
+			}else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});			
+	}
 	//Index de todos los usuarios//
 	router.get('/', function(req, res, next) {
 		getAllUsers(req, res);
 	});
-
+	router.get('/index', function(req, res, next){
+		var id_user = req.session.user;
+		if(id_user){
+			indexUser(id_user, res);
+		}else{
+			res.redirect('/');
+		}
+	});
+	router.get('/lendings', function(req, res, next){
+		var id_user = req.session.user;
+		if(id_user){
+			getUserLendings(id_user, res);
+		}else{
+			res.redirect('/');
+		}
+	});
 	//Template para registrar usuario/
 	router.get('/new', function(req, res, next){
 		res.render('users_new')

@@ -20,7 +20,7 @@ var pool = mysql.createPool({
 });
 //TERMINA LA CONEXIÓN//
 
-var index = require('./routes/index');
+var index = require('./routes/index')(pool);
 var users = require('./routes/users')(pool);
 var sessions = require('./routes/sessions')(pool);
 var books = require('./routes/books')(pool);
