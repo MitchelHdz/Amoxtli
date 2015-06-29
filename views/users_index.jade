@@ -1,19 +1,53 @@
-doctype html
-html
-  head
-    title Usuarios
-  body
-    each user in users
-      div
-        h2 Id
-        p
-          span= user.id
-        h2 Nombre
-        p
-          span= (user.names + ' ' + user.last_names)
-        h2 E-mail
-        p
-          span= user.email
-        h2 Facebook Id
-        p
-          span= user.facebook_id
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Administrador
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    .slider
+      ul.slides
+        li
+          img(src='http://lorempixel.com/580/250/nature/1', style='display: block; transform: translate3d(-50%, 147px, 0px);')
+          // random image
+          .caption.center-align
+            h3 This is our big Tagline!
+            |           
+            h5.light.grey-text.text-lighten-3 Here&apos;s our small slogan.
+        |       
+        li
+          img(src='http://lorempixel.com/580/250/nature/2', style='display: block; transform: translate3d(-50%, 147px, 0px);')
+          // random image
+          .caption.left-align
+            h3 Left Aligned Caption
+            |           
+            h5.light.grey-text.text-lighten-3 Here&apos;s our small slogan.
+        |       
+        li
+          img(src='http://lorempixel.com/580/250/nature/3', style='display: block; transform: translate3d(-50%, 147px, 0px);')
+          // random image
+          .caption.right-align
+            h3 Right Aligned Caption
+            |           
+            h5.light.grey-text.text-lighten-3 Here&apos;s our small slogan.
+        |       
+        li
+          img(src='http://lorempixel.com/580/250/nature/4', style='display: block; transform: translate3d(-50%, 147px, 0px);')
+          // random image
+          .caption.center-align
+            h3 This is our big Tagline!
+            |           
+            h5.light.grey-text.text-lighten-3 Here&apos;s our small slogan.
+    |         
+    |         
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')
