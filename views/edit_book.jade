@@ -1,0 +1,114 @@
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Ediciones
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+      .navbar-fixed
+        //
+          <ul id="dropdown1" class="dropdown-content">
+          <form>
+          <li><input type="email" class="validate" id="email"><label for="email">Email</label></li>
+          <li><a href="#!">Iniciar Sesión</a></li>
+          <li class="divider"></li>
+          <li><a href="#!">Tu Gfa</a></li>
+          </form>
+          </ul>
+        nav
+          .nav-wrapper
+            a.brand-logo(href='#!') Amoxtli
+            |                             
+            ul.right.hide-on-med-and-down
+              li
+                a(href='sass.html') Cerrar Sesi&oacute;n
+              // Dropdown Trigger
+    |         
+    main
+      br
+      |                 
+      h4.center Edita, sube o elimina el libro
+      |                 
+      br
+      |                 
+      br
+      |                  
+      |                 
+      .container.blue-grey.darken-1            
+        .row
+        if book
+          form.col.s12(action="/books/#{book.id}", method='POST')
+            .row
+              .input-field.col.s6
+                input#first_name.validate(type='text' name='name' value="#{book.name}")
+                |                       
+                label(for='first_name') Nombre
+              |                     
+              .input-field.col.s6
+                input#last_name.validate(type='text' name='author' value="#{book.author}")
+                |                       
+                label(for='last_name') Autor
+            |                   
+            .row
+              .input-field.col.s12
+                input#username.validate(type='text' name='editor' value="#{book.editor}")
+                |                       
+                label(for='username') Editorial
+            |                   
+            .row
+              .input-field.col.s12
+                input#password.validate(type='text' name='genre' value="#{book.genre}")
+                |                       
+                label(for='password') Categoria
+            |                   
+            .row
+              .input-field.col.s12
+                input#email.validate(type='text' name='number' value="#{book.number}")
+                |                       
+                label(for='email') Numero de ejemplares
+              |                        
+              .input-field.col.s12
+                textarea#textarea1.materialize-textarea(name='review') #{book.review}
+                |           
+                label(for='textarea1') Rese&ntilde;a
+            |             
+            br
+            |  
+            |             
+            .container.center
+              button.btn-large.waves-effect.waves-light(type='submit')
+                | Registrar
+                i.mdi-content-send.right
+          .container.center
+            form(action="/books/#{book.id}/delete" method="POST")
+              button.btn-large.waves-effect.waves-light(type='submit')
+                | Eliminar
+                i.mdi-content-send.right
+        else
+          h1 No existe este libro :<        
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos reservados
+          a.grey-text.text-lighten-4.right(href='#!') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')

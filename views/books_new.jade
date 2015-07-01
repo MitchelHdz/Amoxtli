@@ -42,13 +42,13 @@ body
       |                  
       |                 
       .container.blue-grey.darken-1
-        form(action='/books/search', method='GET')  
+        form(action='/books/edit', method='GET')  
           .col.s12
             span.icon
               i.fa.fa-search
             |                       
-            input#search.validate(type='search', placeholder='Search...', name='q')
-            button.waves-effect.waves-light.btn(type='submit', name='') Buscar
+            input#search.validate(type='search', placeholder='Id de libro', name='id')
+            button.waves-effect.waves-light.btn(type='submit') Buscar
 
         |                 
         br
@@ -93,7 +93,7 @@ body
             |  
             |             
             .container.center
-              button.btn-large.waves-effect.waves-light(type='submit', name='action')
+              button.btn-large.waves-effect.waves-light(type='submit')
                 | Registrar
                 i.mdi-content-send.right
     |         

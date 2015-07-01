@@ -54,10 +54,12 @@ module.exports = function(pool){
 						connection.release();
 					}else{
 						res.render('error',{error: err});
+						connection.release();
 					}
 				});
 			}else{
 				res.render('error',{error: err});
+				connection.release();
 			}
 		});	
 	}
@@ -79,11 +81,31 @@ module.exports = function(pool){
 			}
 		});
 	}
+	function editBook(res, id){
+		pool.getConnection(function(err, connection){
+			if (!err){
+				connection.query('SELECT * FROM books WHERE id = "'+id+'"',function(err, rows, fields){
+					if(!err){
+						console.log(rows);
+						res.render('edit_book',{book: rows[0]});
+						connection.release();
+					}else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});
+			}else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});	
+	}
 	function putBook(res, values, id){
 		pool.getConnection(function(err, connection){
 			if(!err){
 				connection.query('UPDATE books SET ? WHERE ?', [values, id], function(err, result){
 					if(!err){
+						res.redirect('/books/'+id);
 						connection.release();
 					}else{
 						res.render('error',{error: err});
@@ -127,6 +149,25 @@ module.exports = function(pool){
 			}
 		});	
 	}
+	function deleteBook(res, id){
+		pool.getConnection(function(err, connection){
+			if(!err){
+				connection.query('DELETE FROM books WHERE id = "'+id+'"', function(err, result){
+					if(!err){
+						res.redirect('/books/new');
+						connection.release();
+					}else{
+						res.render('error',{error: err})
+						connection.release();
+					}
+				});
+			}
+			else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});		
+	}
 	router.get('/searching', function(req, res, next){
 		res.render('search_book', { session: req.session.user || req.session.admin });
 	});
@@ -145,15 +186,38 @@ module.exports = function(pool){
 	router.post('/', function(req, res, next){
 		values = getPostValues(req);
 		postBook(res, values);
+	});	router.post('/:id?', function(req, res, next){
+		var values = getPutValues(req);
+		var id = req.params.id;
+		putBook(res, values, id);
 	});
-	router.get('/:id',function(req, res, next){
-		getBook(req,res);
+	router.get('/edit', function(req, res, next){
+		var sess = req.session;
+		if(sess.admin){
+			var id = req.query.id;
+			console.log(id);
+			editBook(res, id);
+		}else{
+			res.redirect('/');
+		}
+	});
+	router.post('/:id?/delete', function(req, res, next){
+		var id = req.params.id;
+		deleteBook(res, id);
 	});
 	router.get('/date',function(req, res, next){
 		var date = new Date();
 		date.setDate(date.getDate() + 6);
 		console.log(date);
 		res.end(toString(date.getDate()));
+	});
+	router.get('/:id',function(req, res, next){
+		getBook(req,res);
+	});
+	router.post('/:id?', function(req, res, next){
+		var values = getPutValues(req);
+		var id = req.params.id;
+		putBook(res, values, id);
 	});
 	return router;
 }

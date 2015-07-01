@@ -2,6 +2,24 @@ module.exports = function(pool){
 	var express = require('express');
 	var router = express.Router();
 
+	function getLendings(res){
+		pool.getConnection(function(err, connection){
+			if(!err){
+				connection.query('call getLendings()', function(err, rows, fields){
+					if(!err){
+						res.render('lending', { title: 'Prestamos' ,	'lendings': rows[0]});
+					}else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});
+			}else{
+				res.render('error',{error: err});
+				connection.release();				
+			}
+		});
+	}
+
 	/* GET home page. */
 	router.get('/', function(req, res, next) {
 	  res.render('search_book', { session: req.session.user || req.session.admin });
@@ -15,7 +33,7 @@ module.exports = function(pool){
 
 	router.use(function(req, res, next){
 		var path = req._parsedUrl.pathname;
-		if(path == '/' || path == '/books/search' || path == '/books/searching' || /\/books\/.+/.test(path)){
+		if(path == '/' || path == '/sessions/login' || path == '/sessions/loginAdmin' || /\/books\/.+/.test(path) ){
 			next();
 		}
 		else{
@@ -28,7 +46,12 @@ module.exports = function(pool){
 		}
 	});
 	router.get('/index', function(req, res, next) {
-	  res.render('users_ind', { title: 'Amoxtli' });
+		if(req.session.admin){
+			res.render('users_ind', { title: 'Amoxtli' });
+		}
+		else{
+			res.redirect('/');
+		}
 	});
 	router.get('/reports', function(req, res, next) {
 	  res.render('report', { title: 'Reportes', 'lendings':
@@ -38,22 +61,12 @@ module.exports = function(pool){
 		]});
 	});
 	router.get('/lendings', function(req, res, next) {
-		pool.getConnection(function(err, connection){
-			if(!err){
-				connection.query('call getLendings()', function(err, rows, fields){
-					if(!err){
-						console.log(rows);
-						res.render('lending', { title: 'Prestamos' ,	'lendings': rows[0]});
-					}else{
-						res.render('error',{error: err});
-						connection.release();
-					}
-				});
-			}else{
-				res.render('error',{error: err});
-				connection.release();				
-			}
-		});
+		if(req.session.admin){
+			getLendings(res);
+		}
+		else{
+			res.redirect('/');
+		}
 	});
 	router.get('/editions', function(req, res, next) {
 	  res.render('edit', { title: 'Ediciones' });
