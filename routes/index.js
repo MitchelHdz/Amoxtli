@@ -33,7 +33,7 @@ module.exports = function(pool){
 
 	router.use(function(req, res, next){
 		var path = req._parsedUrl.pathname;
-		if(path == '/' || path == '/sessions/login' || path == '/sessions/loginAdmin' || /\/books\/.+/.test(path) || /\/users\/.+/.test(path)){
+		if(path == '/' || path == '/sessions/login' || path == '/sessions/loginAdmin' || /\/books\/.+/.test(path) || /\/users\/.+/.test(path) || path == '/users'){
 			next();
 		}
 		else{
