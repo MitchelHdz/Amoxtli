@@ -6,10 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
-/*
-/Aqui va la conexión a la base de datos mierda puto Mitchel como te odio a la verga
-/
-*/
+var socket_io = require('socket.io');
 var pool = mysql.createPool({
   host     : 'localhost',
   port     : '3306',
@@ -18,7 +15,11 @@ var pool = mysql.createPool({
   database : 'amoxtli',
   connectionLimit : 10
 });
-//TERMINA LA CONEXIÓN//
+
+var app = express();
+
+var io = socket_io();
+app.io = io;
 
 var index = require('./routes/index')(pool);
 var users = require('./routes/users')(pool);
@@ -26,8 +27,9 @@ var sessions = require('./routes/sessions')(pool);
 var books = require('./routes/books')(pool);
 var lendings = require('./routes/lendings')(pool);
 var reports = require('./routes/reports')(pool);
+var chat = require('./routes/chat')(io);
 
-var app = express();
+
 //SET SESSION
 app.use(session({
     secret: 'mitchelhdz',
@@ -53,6 +55,7 @@ app.use('/sessions', sessions);
 app.use('/books', books);
 app.use('/lendings', lendings);
 app.use('/reports', reports);
+app.use('/chat', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
