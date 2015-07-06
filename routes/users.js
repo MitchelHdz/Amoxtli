@@ -248,6 +248,9 @@ module.exports = function(pool){
 		deleteUser(req, res, next);
 	});
 	return router;
+	router.get('/reports', function(req, res, next) {
+	  res.render('users_reports', { session: req.session.user || req.session.admin });
+	});
 }
 
 
