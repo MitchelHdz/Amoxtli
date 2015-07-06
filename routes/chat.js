@@ -17,11 +17,19 @@ module.exports = function(io){
 		res.render('home');
 	});
 
+	router.get('/index', function(req, res){
+
+	});
+
 	router.get('/create', function(req,res){
 
 		// Generate unique id for the room
 		var id = Math.round((Math.random() * 1000000));
-
+		var values = {
+			id: id,
+			user_id: req.session.user
+		}
+		postChat(values, res);
 		// Redirect to the random room
 		res.redirect('/chat/'+id);
 	});
@@ -30,6 +38,11 @@ module.exports = function(io){
 		console.log('pene')
 		// Render the chant.html view
 		res.render('chat');
+	});
+
+	router.post('/', function(req, res){
+		var values = getPostValues(req);
+		postChat(values, res);
 	});
 
 	// Initialize a new socket.io application, named 'chat'
@@ -156,4 +169,56 @@ function findClientsSocket(io,roomId, namespace) {
 		}
 	}
 	return res;
+}
+function getPostValues(req){
+	var id = req.body.id;
+	var user_id = req.body.id;
+
+	var values = {
+		id: id,
+		user_id: user_id
+	}
+
+	return values;
+}
+
+function postChat(values, res) {
+	pool.getConnection(function(err, connection){
+		if (!err) {
+			connection.query('INSERT INTO chats SET ?', values, function(err, result){
+				if(!err){
+					res.redirect('/chat/index');
+					connection.release();
+				}
+				else{
+					res.render('error',{error: err});
+					connection.release();
+				}
+			});					
+		}
+		else{
+			res.render('error',{error: err});
+			connection.release();
+		}
+	});
+}
+function getChats(res) {
+	pool.getConnection(function(err, connection){
+		if (!err) {
+			connection.query('SELECT * FROM chats', function(err, rows, fields){
+				if(!err){
+					res.render('/chat/index',{chats: rows});
+					connection.release();
+				}
+				else{
+					res.render('error',{error: err});
+					connection.release();
+				}
+			});					
+		}
+		else{
+			res.render('error',{error: err});
+			connection.release();
+		}
+	});
 }

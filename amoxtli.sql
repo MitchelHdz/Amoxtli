@@ -46,6 +46,11 @@ create table reports(
 );
 drop table reports;
 
+CREATE TABLE chats(
+	id INT NOT NULL,
+    user_id  INT references users.id
+)
+
 SELECT * FROM lendings;
 
 SELECT * from lendings l INNER JOIN users u ON l.id_user = u.id INNER JOIN books b ON l.id_book = b.id;
