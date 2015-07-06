@@ -10,7 +10,7 @@ var router = express.Router();
 // Export a function, so that we can pass 
 // the app and io instances from the app.js file:
 
-module.exports = function(io){
+module.exports = function(io, pool){
 
 	router.get('/', function(req, res){
 		// Render views/home.html
