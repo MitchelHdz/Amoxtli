@@ -1,0 +1,20 @@
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+.border {
+    border-radius: 10px 25px;
+    
+}
+
+.border1 {
+    
+    border-radius: 50px 5px;
+    
+
+}

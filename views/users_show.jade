@@ -1,0 +1,95 @@
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title #{user.username}
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+      .navbar-fixed
+        nav
+          .nav-wrapper
+            a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/sessions/logout') Cerrar Sesi&oacute;n
+                li
+                  a(href='/users/index') Ver Perfil
+              // Dropdown Trigger
+    |         
+    main
+      br
+      |             
+      .container
+        .center
+          .col.s12.m6
+            .card.blue-grey.darken-1
+              .card-content.white-text
+                span.card-title Nombre de usuario
+                |                        
+                p #{user.names}
+        |             
+        br
+        |             
+        .center
+          .col.s12.m6
+            .card.blue-grey.darken-1
+              .card-content.white-text
+                span.card-title Apellidos
+                |                       
+                p #{user.last_names}
+        |                  
+        br
+        |              
+        .center
+          .col.s12.m6
+            .card.blue-grey.darken-1
+              .card-content.white-text
+                span.card-title Correo del usuario
+                |                       
+                p #{user.email}
+        |                  
+        br
+        |              
+        .container.center
+              form(style="display:inline;" action="/users/#{user.id}/edit" method='GET')
+                button.btn-large.waves-effect.waves-light(type='submit', name='')
+                  | Editar
+                  i.mdi-content-send.right  
+              &nbsp;&nbsp;&nbsp;&nbsp;            
+              form(style="display:inline;" action="/users/#{user.id}/delete" method='POST')
+                button.btn-large.waves-effect.waves-light(type='submit', name='')
+                  | Eliminar
+                  i.mdi-content-send.right
+        |                 
+        br
+        |                 
+        br
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos Reservados
+          a.grey-text.text-lighten-4.right(href='/') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')
+
+

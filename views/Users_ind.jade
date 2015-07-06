@@ -1,0 +1,123 @@
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Administrador
+    // CSS
+    link(href='stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+      .navbar-fixed
+        nav
+          .nav-wrapper
+            a.brand-logo(href='/')  Amoxtli
+            |                             
+            ul.right.hide-on-med-and-down
+              li
+                a(href='/sessions/logout') Cerrar Sesi&oacute;n
+              // Dropdown Trigger
+    |         
+    main
+      br
+      br
+      br
+      br
+      |             
+      |                 
+      .row.center
+        .col.s4
+          // Promo Content 1 goes here
+          .collection.blue-grey.darken-2
+            br
+            |                       
+            h3
+              i.large.mdi-action-assignment-turned-in.blue-text.text-lighten-5
+            |                        
+            h4.blue-text.text-lighten-5 Registro
+            |                        
+            p.blue-text.text-lighten-5 Registra un pr&eacute;stamo.
+            |                        
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="movel()") Ingresar
+              i.mdi-content-send.right
+            script.
+              function movel(){
+                window.location.href = '/lendings'
+              }
+            |                     
+            br
+            br
+        |                   
+        .col.s4
+          // Promo Content 2 goes here
+          .collection.blue-grey.darken-2
+            br
+            |  
+            |                       
+            h3
+              i.large.mdi-action-settings-applications.blue-text.text-lighten-5
+            |                        
+            h4.blue-text.text-lighten-5 Ediciones
+            |                       
+            p.blue-text.text-lighten-5 Edita o registra libros.
+            |                       
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="movee()")
+              | Ingresar
+              i.mdi-content-send.right
+            script.
+              function movee(){
+                window.location.href = '/books/new'
+              }
+            |                           
+            br
+            br
+        |                   
+        .col.s4
+          // Promo Content 3 goes here
+          .collection.blue-grey.darken-2
+            br
+            |   
+            |                       
+            h3
+              i.large.mdi-action-assignment-late.blue-text.text-lighten-5
+            |                        
+            h4.blue-text.text-lighten-5 Reportes
+            |                       
+            p.blue-text.text-lighten-5 Consulta las multas.
+            |                       
+            button.btn-large.waves-effect.waves-light(type='submit', name='action' onclick="mover()")
+              | Ingresar
+              i.mdi-content-send.right
+            script.
+              function mover(){
+                window.location.href = '/reports'
+              }
+            |                       
+            br
+            br
+      |        
+      br
+      br
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos Reservados
+          a.grey-text.text-lighten-4.right(href='/') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='javascripts/materialize.js')
+    |         
+    script(src='javascripts/init.js')

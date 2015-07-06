@@ -1,0 +1,119 @@
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Multas
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+      .navbar-fixed
+        nav
+          .nav-wrapper
+            a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/sessions/logout') Cerrar Sesi&oacute;n
+                li
+                  a(href='/users/index') Ver Perfil
+              // Dropdown Trigger
+    |         
+    main
+      br
+      |             
+      form(action='' method='POST')
+        .container
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Nombre de usuario
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='text' placeholder='#{user.names}')
+                    |                           
+                    label(for='first_name') Nombre
+          |             
+          br
+          |             
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Apellidos
+                  |                       
+                  .input-field.col.s6
+                    input#first_name.validate(type='text' placeholder='#{user.last_names}')
+                    |                           
+                    label(for='first_name') Apellidos
+          |                  
+          br
+          |              
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Correo del usuario
+                  |                       
+                  .input-field.col.s6
+                    input#first_name.validate(type='email' placeholder='#{user.email}')
+                    |                           
+                    label(for='first_name') Correo
+          |                  
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Contrase&ntilde;a
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='password')
+                    |                           
+                    label(for='first_name') Contrase&ntilde;a
+          |                  
+          .center
+            .col.s12.m6
+              .card.blue-grey.darken-1
+                .card-content.white-text
+                  span.card-title Repetir contrase&ntilde;a
+                  |                         
+                  .input-field.col.s6
+                    input#first_name.validate(type='password')
+                    |                           
+                    label(for='first_name') Contrase&ntilde;a
+          |                  
+          br
+          |              
+          .center
+            button.btn-large.waves-effect.waves-light(type='submit', name='action')
+              | Editar
+              i.mdi-content-add-box.right
+          |                 
+          br
+          |                 
+          br
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos Reservados
+          a.grey-text.text-lighten-4.right(href='/users/index') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')

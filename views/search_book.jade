@@ -1,0 +1,82 @@
+doctype html(lang='es')
+head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    |         
+    title Buscar libro
+    // CSS
+    link(href='/stylesheets/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+    |         
+    link(href='/stylesheets/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+  |     
+body
+    header
+        nav
+          if session
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/sessions/logout') Cerrar Sesi&oacute;n
+                li
+                  a(href='/users/index') Ver Perfil
+                // Dropdown Trigger
+          else
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/login') Iniciar Sesi&oacute;n
+                 li
+                  a(href='/users/new') Registrarse
+                // Dropdown Trigger    
+    |         
+    main
+      br
+      br
+      br
+      |             
+      .center
+        h1 Busca un libro
+      |             
+      br
+      |             
+      .container
+        form(action='/books/search' method='GET')
+          .container.blue-grey.darken-1
+            .col.s12
+              br
+              |                       
+              span.icon
+                i.fa.fa-search
+              |                       
+              input#search.validate(type='search', placeholder='Search...', name='q')
+            |                 
+            .center
+              button.btn-large.waves-effect.waves-light(type='submit', name='action')
+                | Buscar
+                i.mdi-content-add-box.right
+            |                 
+            br
+    |         
+    footer.page-footer
+      .container
+        .row
+          .center
+            h5.white-text Sistema Amoxtli
+            |                 
+            p.grey-text.text-lighten-4 A&uacute;n en desarrollo.
+      |           
+      .footer-copyright
+        .container
+          | &copy; 2015 Derechos Reservados
+          a.grey-text.text-lighten-4.right(href='/') Regresar
+    // SCRIPTS
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    |         
+    script(src='/javascripts/materialize.js')
+    |         
+    script(src='/javascripts/init.js')
