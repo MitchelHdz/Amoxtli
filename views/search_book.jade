@@ -12,6 +12,12 @@ head
   |     
 body
     header
+<<<<<<< HEAD
+        nav
+          if session
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+=======
       .navbar-fixed
         //
           <ul id="dropdown1" class="dropdown-content">
@@ -26,18 +32,33 @@ body
           if session
             .nav-wrapper
               a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
               |                             
               ul.right.hide-on-med-and-down
                 li
                   a(href='/sessions/logout') Cerrar Sesi&oacute;n
+<<<<<<< HEAD
+                li
+                  a(href='/users/index') Ver Perfil
+                // Dropdown Trigger
+          else
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+=======
                 // Dropdown Trigger
           else
             .nav-wrapper
               a.brand-logo(href='#!') &nbsp;&nbsp;&nbsp; Amoxtli
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
               |                             
               ul.right.hide-on-med-and-down
                 li
                   a(href='/login') Iniciar Sesi&oacute;n
+<<<<<<< HEAD
+                 li
+                  a(href='/users/new') Registrarse
+=======
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
                 // Dropdown Trigger    
     |         
     main
@@ -79,7 +100,11 @@ body
       .footer-copyright
         .container
           | &copy; 2015 Derechos Reservados
+<<<<<<< HEAD
+          a.grey-text.text-lighten-4.right(href='/') Regresar
+=======
           a.grey-text.text-lighten-4.right(href='#!') Regresar
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
     // SCRIPTS
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     |         

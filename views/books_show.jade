@@ -13,6 +13,29 @@ head
 body
     header
       .navbar-fixed
+<<<<<<< HEAD
+        nav
+          if session
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/sessions/logout') Cerrar Sesi&oacute;n
+                li
+                  a(href='/users/index') Ver Perfil
+                // Dropdown Trigger
+          else
+            .nav-wrapper
+              a.brand-logo(href='/') &nbsp;&nbsp;&nbsp; Amoxtli
+              |                             
+              ul.right.hide-on-med-and-down
+                li
+                  a(href='/login') Iniciar Sesi&oacute;n
+                 li
+                  a(href='/users/new') Registrarse
+                // Dropdown Trigger    
+=======
         //
           <ul id="dropdown1" class="dropdown-content">
           <form>
@@ -30,6 +53,7 @@ body
               li
                 a(href='/') Cerrar Sesi&oacute;n
               // Dropdown Trigger
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
     |         
     main
       br
@@ -128,7 +152,11 @@ body
       .footer-copyright
         .container
           | &copy; 2015 Derechos Reservados
+<<<<<<< HEAD
+          a.grey-text.text-lighten-4.right(href='/books/search#{book.id}') Regresar
+=======
           a.grey-text.text-lighten-4.right(href='#!') Regresar
+>>>>>>> 4f25c8b0b2d9cff3697ccc11df32463c08d7b9a9
     // SCRIPTS
     script(src='https://code.jquery.com/jquery-2.1.1.min.js')
     |         
