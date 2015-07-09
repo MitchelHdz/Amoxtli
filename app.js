@@ -27,7 +27,7 @@ var sessions = require('./routes/sessions')(pool);
 var books = require('./routes/books')(pool);
 var lendings = require('./routes/lendings')(pool);
 var reports = require('./routes/reports')(pool);
-var chat = require('./routes/chat')(io)(pool);
+var chat = require('./routes/chat')(io, pool);
 
 
 //SET SESSION

@@ -1,55 +1,8 @@
-// This file is required by app.js. It sets up event listeners
-// for the two main URL endpoints of the application - /create and /chat/:id
-// and listens for socket.io messages.
-
-// Use the gravatar module, to turn email addresses into avatar images:
-
-var gravatar = require('gravatar');
-var express = require('express');
-var router = express.Router();
-// Export a function, so that we can pass 
-// the app and io instances from the app.js file:
-
 module.exports = function(io, pool){
-
-	router.get('/', function(req, res){
-		// Render views/home.html
-		res.render('home');
-	});
-
-	router.get('/index', function(req, res){
-
-	});
-
-	router.get('/create', function(req,res){
-
-		// Generate unique id for the room
-		var id = Math.round((Math.random() * 1000000));
-		var values = {
-			id: id,
-			user_id: req.session.user
-		}
-		postChat(values, res);
-		// Redirect to the random room
-		res.redirect('/chat/'+id);
-	});
-
-	router.get('/:id', function(req,res){
-		console.log('pene')
-		// Render the chant.html view
-		res.render('chat');
-	});
-
-	router.post('/', function(req, res){
-		var values = getPostValues(req);
-		postChat(values, res);
-	});
-
-	// Initialize a new socket.io application, named 'chat'
+	var gravatar = require('gravatar');
+	var express = require('express');
+	var router = express.Router();
 	var chat = io.on('connection', function (socket) {
-
-		// When the client emits the 'load' event, reply with the 
-		// number of people in this chat room
 
 		socket.on('load',function(data){
 
@@ -148,77 +101,112 @@ module.exports = function(io, pool){
 		});
 	});
 
-	return router;
-};
+	function findClientsSocket(io,roomId, namespace) {
+		var res = [],
+			ns = io.of(namespace ||"/");    // the default namespace is "/"
 
-function findClientsSocket(io,roomId, namespace) {
-	var res = [],
-		ns = io.of(namespace ||"/");    // the default namespace is "/"
-
-	if (ns) {
-		for (var id in ns.connected) {
-			if(roomId) {
-				var index = ns.connected[id].rooms.indexOf(roomId) ;
-				if(index !== -1) {
+		if (ns) {
+			for (var id in ns.connected) {
+				if(roomId) {
+					var index = ns.connected[id].rooms.indexOf(roomId) ;
+					if(index !== -1) {
+						res.push(ns.connected[id]);
+					}
+				}
+				else {
 					res.push(ns.connected[id]);
 				}
 			}
-			else {
-				res.push(ns.connected[id]);
+		}
+		return res;
+	}	
+	function getPostValues(req){
+		var id = req.body.id;
+		var user_id = req.body.id;
+
+		var values = {
+			id: id,
+			user_id: user_id
+		}
+
+		return values;
+	}
+
+	function postChat(values, res) {
+		pool.getConnection(function(err, connection){
+			if (!err) {
+				connection.query('INSERT INTO chats SET ?', values, function(err, result){
+					if(!err){
+						res.redirect('/chat/index');
+						connection.release();
+					}
+					else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});					
 			}
-		}
-	}
-	return res;
-}
-function getPostValues(req){
-	var id = req.body.id;
-	var user_id = req.body.id;
-
-	var values = {
-		id: id,
-		user_id: user_id
+			else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});
 	}
 
-	return values;
+	function getChats(res) {
+		pool.getConnection(function(err, connection){
+			if (!err) {
+				connection.query('SELECT * FROM chats', function(err, rows, fields){
+					if(!err){
+						res.render('/chat/index',{chats: rows});
+						connection.release();
+					}
+					else{
+						res.render('error',{error: err});
+						connection.release();
+					}
+				});					
+			}
+			else{
+				res.render('error',{error: err});
+				connection.release();
+			}
+		});
+	}	
+
+	router.get('/', function(req, res){
+		// Render views/home.html
+		res.render('home');
+	});
+
+	router.get('/index', function(req, res){
+
+	});
+
+	router.get('/create', function(req,res){
+
+		// Generate unique id for the room
+		var id = Math.round((Math.random() * 1000000));
+		var values = {
+			id: id,
+			user_id: req.session.user
+		}
+		postChat(values, res);
+		// Redirect to the random room
+		res.redirect('/chat/'+id);
+	});
+
+	router.get('/:id', function(req,res){
+		console.log('pene')
+		// Render the chant.html view
+		res.render('chat');
+	});
+
+	router.post('/', function(req, res){
+		var values = getPostValues(req);
+		postChat(values, res);
+	});
+	return router;
 }
 
-function postChat(values, res) {
-	pool.getConnection(function(err, connection){
-		if (!err) {
-			connection.query('INSERT INTO chats SET ?', values, function(err, result){
-				if(!err){
-					res.redirect('/chat/index');
-					connection.release();
-				}
-				else{
-					res.render('error',{error: err});
-					connection.release();
-				}
-			});					
-		}
-		else{
-			res.render('error',{error: err});
-			connection.release();
-		}
-	});
-}
-function getChats(res) {
-	pool.getConnection(function(err, connection){
-		if (!err) {
-			connection.query('SELECT * FROM chats', function(err, rows, fields){
-				if(!err){
-					res.render('/chat/index',{chats: rows});
-					connection.release();
-				}
-				else{
-					res.render('error',{error: err});
-					connection.release();
-				}
-			});					
-		}
-		else{
-			res.render('error',{error: err});
-			connection.release();
-		}
-	});
-}
+	
