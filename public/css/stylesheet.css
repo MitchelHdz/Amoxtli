@@ -181,11 +181,7 @@ body {
 	width: 150px;
 	height: 30px;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
-	background-color: #f0f1f3;
-	border: 1px solid #d1d1d1;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
 	margin-bottom:20px;
 	overflow: hidden;
 }
@@ -196,11 +192,6 @@ body {
 	width: 200px;
 	height: 30px;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
-	background-color: #f0f1f3;
-	border: 1px solid #d1d1d1;
-	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
 	margin-bottom:40px;
 }
 
@@ -259,11 +250,7 @@ body {
 	width: 150px;
 	height: 30px;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
-	background-color: #f0f1f3;
-	border: 1px solid #d1d1d1;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
 	margin-bottom:20px;
 }
 
@@ -273,11 +260,7 @@ body {
 	width: 200px;
 	height: 30px;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
-	background-color: #f0f1f3;
-	border: 1px solid #d1d1d1;
 	border-radius: 3px;
-	box-shadow:0px 3px 3px #e3e4e6;
 	margin-bottom:40px;
 }
 
@@ -566,11 +549,10 @@ footer {
 #chatform {
 	width:700px;
 	margin: 0 auto;
-	background-color: white;
 }
 
 #message {
-	width: 550px;
+	width: 450px;
 	height: 80px;
 	display: block;
 	float:left;

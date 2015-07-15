@@ -7,57 +7,74 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<header class="banner">
-	</header>
-	<section class="section">
+	<header>
+                <div class="navbar-fixed">
+                    <nav>
+                        <div class="nav-wrapper">
+                            <a href="/" class="brand-logo">&nbsp;&nbsp; Amoxtli</a>
+                            <ul class="right hide-on-med-and-down">
+                              <li><a href="/login">Iniciar Sesión</a></li>                             
+                              <!-- Dropdown Trigger -->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+    </header>
+	<main>
+        <section class="section">
 		<!-- These elements are displayed as white info cards in the middle of the screen -->
-		<div class="connected">
+		<div class="connected blue-grey darken-1 border1">
 			<img src="../img/unnamed.jpg" id="creatorImage" />
 			<div class="infoConnected">
-				<h2>Registrate</h2>
+				<h2 class="blue-text text-lighten-5">Soporte</h2>
 				<br/>
 				<form class="loginForm">
 					<input type="text" id="yourName" placeholder="Nombre" /><br/>
 					<input type="text" id="yourEmail" placeholder="Correo" /><br/>
-					<input type="submit" id="yourEnter" value="ENTER" />
+					 <button class="btn-large waves-effect waves-light" type="submit" name="action">Ingresar
+                        <i class="mdi-content-send right"></i>
+                      </button>
 				</form>
 			</div>
 		</div>
-		<div class="personinside">
+		<div class="personinside blue-grey darken-1 border1">
 			<img src="../img/unnamed.jpg" id="ownerImage" />
 			<div class="infoInside">
-				<h2>Chatea con <span class="nickname-chat"></span></h2>
+				<h3 class="blue-text text-lighten-5">Registrate</span></h3>
 				<br/>
 				<form class="loginForm">
 					<input type="text" id="hisName" placeholder="Nombre" /><br/>
 					<input type="text" id="hisEmail" placeholder="Correo" /><br/>
-					<input type="submit" id="hisEnter" value="CHAT" />
+					 <button class="btn-large waves-effect waves-light" type="submit" name="action">Ingresar
+                        <i class="mdi-content-send right"></i>
+                      </button>
 				</form>
 			</div>
 		</div>
-		<div class="invite-textfield">
-			<h2>Oh! No hay personas en este chat</h2>
-			<h5>Invita a alguien a este chat</h5>
+		<div class="invite-textfield blue-grey darken-1 border1 center">
+			<br><br>
+            <h3 class="blue-text text-lighten-5">Sala creada.</h3>
+			<h6 class="blue-text text-lighten-5">Espera a que un usuario entre.</h6>
 			<div class="link">
 				<a title="Invite a friend" href="" id="link"></a>
 			</div>
 		</div>
-		<div class="left">
+		<div class="left blue-grey darken-1 border1 center">
 			<img src="../img/unnamed.jpg" id="leftImage" />
 			<div class="info">
-				<h2><span class="nickname-left"></span> Salió del chat.</h2>
-				<h5>Regresa para que otro miembro del soporte te ayude</h5>
+				<h3 class="blue-text text-lighten-5"><span class="nickname-left"></span> Salió del chat.</h3>
+				<h6 class="blue-text text-lighten-5">Regresa para que otro miembro del soporte te ayude</h6>
 			</div>
 		</div>
 		<div class="toomanypeople">
-			<h2>Oh! Parece que no hay nadie en la sala</h2>
-			<h5>Necesitas un usuario y soporte para tener una <a title="New Room" href="/create" id="room">sala</a>?</h5>
+			<h2>El soporte esta ocupado</h2>
+			<h5>Espera a que esté disponible o entre otro soporte <a title="New Room" href="/create" id="room">sala</a>?</h5>
 		</div>
-		<div class="nomessages">
+		<div class="nomessages blue-grey darken-1 border1 center">
 			<img src="../img/unnamed.jpg" id="noMessagesImage" />
 			<div class="info">
-				<h2>Estas chateando con <span class="nickname-chat"></span>.</h2>
-				<h5>Mandale un mensaje aqui abajo</h5>
+				<h3 class="blue-text text-lighten-5">Estas chateando con <span class="nickname-chat"></span>.</h3>
+				<h6 class="blue-text text-lighten-5">Mandale un mensaje aqui abajo</h6>
 			</div>
 		</div>
 		<div class="chatscreen">
@@ -66,12 +83,16 @@
 			</ul>
 		</div>
 	</section>
-	<footer>
+    
+	<footer class="blue-grey darken-1">
 		<form id="chatform">
 			<textarea id="message" placeholder="Escribe algo.."></textarea>
-			<input type="submit" id="submit" value="SEND"/>
+			&nbsp;&nbsp;<button class="btn-large waves-effect waves-light" type="submit" name="action">Ingresar
+                <i class="mdi-content-send right"></i>
+            </button>
 		</form>
 	</footer>
+    </main>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../js/moment.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
