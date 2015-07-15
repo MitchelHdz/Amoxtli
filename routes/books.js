@@ -123,7 +123,7 @@ module.exports = function(pool){
 			var query = [
 				{author: q},
 				{name: q},
-				{editor: q}
+				{editor: q},
 			]
 			pool.getConnection(function(err, connection){
 			if(!err){

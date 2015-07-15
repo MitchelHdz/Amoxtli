@@ -1,29 +1,63 @@
 
 <html>
-
 <head>
-	<link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
-	<link type="text/css" rel="stylesheet" href="/stylesheets/materialize.css" />
+	<link type="text/css" rel="stylesheet" href="../stylesheets/materialize.css" />
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700" rel="stylesheet" type="text/css">
-
-
 </head>
-
 <body>
-
-	<header class="homebanner">
+	<header>
+                <div class="navbar-fixed">
+                    <nav>
+                        <div class="nav-wrapper">
+                            <a href="/" class="brand-logo">&nbsp;&nbsp; Amoxtli</a>
+                            <ul class="right hide-on-med-and-down">
+                              <li><a href="/login">Iniciar Sesión</a></li>                             
+                              <!-- Dropdown Trigger -->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+    </header>
+	<main>
+	<br>
+    <br>
+    <br>
+	<div class="container blue-grey darken-1 border1">  
+    <div class="row center">
 	<section>
-
 		<div class="homesection">
 			<a title="Create" href="/chat/create" id="create">
+			<br>
 				<div id="createbutton">
-					<div id="little">Crea una sala de</div>
-					<div id="big">chat con un usuario</div>
+					<div id="little"><h4 class="center blue-text text-lighten-5">Crea una sala de</h4></div>
+					<div id="big"><h4 class="center blue-text text-lighten-5">chat con un usuario</h4></div>
 				</div>
+				<br>
 			</a>
 		</div>
-
 	</section>
-
+	</div></div>
+	<br><br><br><br><br><br><br>
+	</main>
+	<footer class="page-footer">
+        <div class="container">
+            <div class="row">
+              <div class="center">
+                <h5 class="white-text">Sistema Amoxtli</h5>
+                <p class="grey-text text-lighten-4">Aun en desarrollo</p>
+              </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+            © 2015 Derechos reservados
+            <a class="grey-text text-lighten-4 right" href="/">Regresar</a>
+            </div>
+        </div>
+    </footer>
+        <!--SCRIPTS-->    
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
 </body>
 </html>
